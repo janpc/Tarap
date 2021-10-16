@@ -8,12 +8,11 @@ import {
   Button,
 } from 'react-native';
 import { Camera } from 'expo-camera';
+import { withRouter } from 'react-router-native';
 
 import { ScanIcon } from '../icons';
 
-const Scanner = ({ navigation }) => {
-  const { navigate } = navigation;
-
+const Scanner = withRouter(({ history }) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
 
@@ -34,7 +33,10 @@ const Scanner = ({ navigation }) => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    navigate('Product', { type, code: data });
+    history.push({
+      pathname: '/product',
+      state: { type, code: data },
+    });
   };
 
   const prepareRatio = async () => {
@@ -103,7 +105,7 @@ const Scanner = ({ navigation }) => {
       )}
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   information: {

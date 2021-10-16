@@ -1,28 +1,23 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NativeRouter, Route, BackButton } from 'react-router-native';
 
 import { List } from '../screens/List';
 import { TextDemo, FormDemo, ButtonDemo } from '../screens/Demos';
 import Scanner from '../screens/Scanner';
 import Product from '../screens/Product';
-
-const { Navigator, Screen } = createStackNavigator();
+import TabBar from '../components/TabBar';
 
 export const Main = () => (
-  <Navigator
-    screenOptions={{
-      headerShown: false,
-    }}
-  >
-    <Screen
-      name="Scanner"
-      component={Scanner}
-      screenOptions={{ unmountOnBlur: true }}
-    />
-    <Screen name="Information" component={List} />
-    <Screen name="Search" component={TextDemo} />
-    <Screen name="Favorites" component={FormDemo} />
-    <Screen name="Profile" component={ButtonDemo} />
-    <Screen name="Product" component={Product} />
-  </Navigator>
+  <NativeRouter>
+    <BackButton>
+      <Route exact path="/scanner" component={Scanner} />
+      <Route exact path="/information" component={List} />
+      <Route exact path="/search" component={TextDemo} />
+      <Route exact path="/favorites" component={FormDemo} />
+      <Route exact path="/profile" component={ButtonDemo} />
+      <Route exact path="/product" component={Product} />
+
+      <TabBar />
+    </BackButton>
+  </NativeRouter>
 );

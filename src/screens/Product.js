@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { withRouter } from 'react-router-native';
 
 import colors from '../constants/colors';
 
@@ -11,14 +12,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const Product = ({ route }) => {
-  const { type, code } = route.params;
+const Product = withRouter(({ history }) => {
+  console.log(history);
+  const { type, code } = history.location.state;
   return (
     <SafeAreaView style={styles.container}>
       <Text>{`Type: ${type}`}</Text>
       <Text>{`Data: ${code}`}</Text>
     </SafeAreaView>
   );
-};
+});
 
 export default Product;

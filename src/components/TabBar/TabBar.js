@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { Text } from 'react-native';
+import { withRouter } from 'react-router-native';
 
 import { TabBarContainer, Tab, SvgContainer } from './styles';
 import {
@@ -11,42 +11,36 @@ import {
   ProfileIcon,
 } from '../../icons';
 
-export default function TabBar() {
-  const navigation = useNavigation();
-  const goTo = route =>
-    navigation.reset({
-      index: 0,
-      routes: [{ name: route }],
-    });
-
-  console.log(goTo);
+export default TabBar = withRouter(({ history }) => {
+  console.log(history);
+  const goTo = route => history.push(`/${route}`);
   return (
     <TabBarContainer>
-      <Tab onPress={() => goTo('Information')}>
+      <Tab onPress={() => goTo('information')}>
         <SvgContainer>
           <InformateIcon color="#394D55" />
         </SvgContainer>
         <Text>inFórmate</Text>
       </Tab>
-      <Tab onPress={() => goTo('Search')}>
+      <Tab onPress={() => goTo('search')}>
         <SvgContainer>
           <SearchIcon color="#394D55" />
         </SvgContainer>
         <Text>buscar</Text>
       </Tab>
-      <Tab onPress={() => goTo('Scanner')}>
+      <Tab onPress={() => goTo('scanner')}>
         <SvgContainer>
           <ScannerIcon color="#394D55" />
         </SvgContainer>
         <Text>escanear</Text>
       </Tab>
-      <Tab onPress={() => goTo('Favorites')}>
+      <Tab onPress={() => goTo('favorites')}>
         <SvgContainer>
           <FavoritesIcon color="#394D55" />
         </SvgContainer>
         <Text>favoritos</Text>
       </Tab>
-      <Tab onPress={() => goTo('Profile')}>
+      <Tab onPress={() => goTo('profile')}>
         <SvgContainer>
           <ProfileIcon color="#394D55" />
         </SvgContainer>
@@ -54,25 +48,4 @@ export default function TabBar() {
       </Tab>
     </TabBarContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    height: 100,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 5,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 100,
-    backgroundColor: 'white',
-  },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'black',
-  },
 });
