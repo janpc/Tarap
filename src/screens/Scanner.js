@@ -8,11 +8,10 @@ import {
   Button,
 } from 'react-native';
 import { Camera } from 'expo-camera';
-import { useIsFocused, useRoute } from '@react-navigation/native';
 
 import { ScanIcon } from '../icons';
 
-const Scanner = ({ navigation, route }) => {
+const Scanner = ({ navigation }) => {
   const { navigate } = navigation;
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -80,10 +79,6 @@ const Scanner = ({ navigation, route }) => {
     );
   }
 
-  if (scanned) {
-    return <View style={styles.information}></View>;
-  }
-
   return (
     <View style={styles.container}>
       {scanned ? (
@@ -127,6 +122,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'blue',
   },
 });
 
