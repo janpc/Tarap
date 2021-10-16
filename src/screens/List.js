@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, SafeAreaView } from 'react-native';
 
 import colors from '../constants/colors';
 import { ListItem, ListSeparator } from '../components/List';
+import TabBar from '../components/TabBar';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +17,7 @@ const screens = [
   {
     title: 'Text',
     subtitle: 'An example of using the Text.js components.',
-    target: 'TextDemo',
+    target: 'Scanner',
   },
   {
     title: 'Form',
@@ -28,24 +29,31 @@ const screens = [
     subtitle: 'An example of using the Button.js components.',
     target: 'ButtonDemo',
   },
+  {
+    title: 'Scanner',
+    subtitle: 'Scan Barcodes',
+    target: 'Scanner',
+  },
 ];
 
 export const List = ({ navigation }) => {
   return (
-    <FlatList
-      style={styles.container}
-      data={screens}
-      keyExtractor={item => item.title}
-      renderItem={({ item }) => (
-        <ListItem
-          title={item.title}
-          subtitle={item.subtitle}
-          onPress={() => navigation.push(item.target)}
-        />
-      )}
-      ItemSeparatorComponent={ListSeparator}
-      ListHeaderComponent={ListSeparator}
-      ListFooterComponent={ListSeparator}
-    />
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        style={styles.container}
+        data={screens}
+        keyExtractor={item => item.title}
+        renderItem={({ item }) => (
+          <ListItem
+            title={item.title}
+            subtitle={item.subtitle}
+            onPress={() => navigation.push(item.target)}
+          />
+        )}
+        ItemSeparatorComponent={ListSeparator}
+        ListHeaderComponent={ListSeparator}
+        ListFooterComponent={ListSeparator}
+      />
+    </SafeAreaView>
   );
 };
