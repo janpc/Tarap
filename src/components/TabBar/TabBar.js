@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { TabBarContainer, Tab, SvgContainer } from './styles';
 import {
