@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Text, Button } from 'react-native';
 import { Camera } from 'expo-camera';
 
+import { useCustomNavigation, useCustomBackNavigation } from '../../navigation';
 import useCustomRatio from '../../hooks/useCustomRatio';
 import { ScanIcon } from '../../icons';
 import { InformationView, CameraView, CameraPreview } from './styles';
 
 const Scanner = ({ navigation }) => {
-  const { navigate } = navigation;
+  useCustomBackNavigation();
+  const { navigate } = useCustomNavigation();
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [scanned, setScanned] = useState(false);

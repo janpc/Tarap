@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Text } from 'react-native';
+
+import { useCustomNavigation } from '../../navigation';
 
 import { TabBarContainer, Tab, SvgContainer } from './styles';
 import {
@@ -12,67 +13,32 @@ import {
 } from '../../icons';
 
 export default function TabBar() {
-  const navigation = useNavigation();
-  const goTo = route =>
-    navigation.reset({
-      index: 0,
-      routes: [{ name: route }],
-    });
+  const { navigate, currentPage } = useCustomNavigation();
 
-  console.log(goTo);
+  const Tab = ({ name, screenName, Icon }) =>
+    TabBarCell({ name, screenName, Icon, currentPage, navigate });
+
   return (
     <TabBarContainer>
-      <Tab onPress={() => goTo('Information')}>
-        <SvgContainer>
-          <InformateIcon color="#394D55" />
-        </SvgContainer>
-        <Text>inFórmate</Text>
-      </Tab>
-      <Tab onPress={() => goTo('Search')}>
-        <SvgContainer>
-          <SearchIcon color="#394D55" />
-        </SvgContainer>
-        <Text>buscar</Text>
-      </Tab>
-      <Tab onPress={() => goTo('Scanner')}>
-        <SvgContainer>
-          <ScannerIcon color="#394D55" />
-        </SvgContainer>
-        <Text>escanear</Text>
-      </Tab>
-      <Tab onPress={() => goTo('Favorites')}>
-        <SvgContainer>
-          <FavoritesIcon color="#394D55" />
-        </SvgContainer>
-        <Text>favoritos</Text>
-      </Tab>
-      <Tab onPress={() => goTo('Profile')}>
-        <SvgContainer>
-          <ProfileIcon color="#394D55" />
-        </SvgContainer>
-        <Text>perfil</Text>
-      </Tab>
+      <Tab name="inFórmate" screenName="Information" Icon={InformateIcon} />
+      <Tab name="buscar" screenName="Search" Icon={SearchIcon} />
+      <Tab name="escanear" screenName="Scanner" Icon={ScannerIcon} />
+      <Tab name="favoritos" screenName="Favorites" Icon={FavoritesIcon} />
+      <Tab name="perfil" screenName="Profile" Icon={ProfileIcon} />
     </TabBarContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    height: 100,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 5,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 100,
-    backgroundColor: 'white',
-  },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'black',
-  },
-});
+const TabBarCell = ({ name, screenName, Icon, currentPage, navigate }) => {
+  return (
+    <Tab
+      onPress={() => navigate(screenName)}
+      isCurrentPage={currentPage === screenName}
+    >
+      <SvgContainer>
+        <Icon color="#394D55" />
+      </SvgContainer>
+      <Text>{name}</Text>
+    </Tab>
+  );
+};

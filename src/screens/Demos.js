@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 
+import { useCustomBackNavigation } from '../navigation';
 import colors from '../constants/colors';
 import { Text } from '../components/Text';
 import { Button } from '../components/Button';
@@ -15,15 +16,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TextDemo = () => (
-  <View style={styles.container}>
-    <Text type="header">This is a header</Text>
-    <Text type="subheader">This is a subheader</Text>
-    <Text>This is normal text</Text>
-  </View>
-);
+export const TextDemo = () => {
+  useCustomBackNavigation();
+  return (
+    <View style={styles.container}>
+      <Text type="header">This is a header</Text>
+      <Text type="subheader">This is a subheader</Text>
+      <Text>This is normal text</Text>
+    </View>
+  );
+};
 
 export const FormDemo = () => {
+  useCustomBackNavigation();
   const { submit, errors, email, setEmail, password, setPassword } = useLogin();
 
   return (
@@ -51,16 +56,19 @@ export const FormDemo = () => {
   );
 };
 
-export const ButtonDemo = () => (
-  <View style={styles.container}>
-    <Button onPress={() => Alert.alert('you pressed the default button')}>
-      Default Button
-    </Button>
-    <Button
-      type="outline"
-      onPress={() => Alert.alert('you pressed the outline button')}
-    >
-      Outline Button
-    </Button>
-  </View>
-);
+export const ButtonDemo = () => {
+  useCustomBackNavigation();
+  return (
+    <View style={styles.container}>
+      <Button onPress={() => Alert.alert('you pressed the default button')}>
+        Default Button
+      </Button>
+      <Button
+        type="outline"
+        onPress={() => Alert.alert('you pressed the outline button')}
+      >
+        Outline Button
+      </Button>
+    </View>
+  );
+};
