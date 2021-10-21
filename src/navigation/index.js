@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { createNavigationContainerRef } from '@react-navigation/native';
 import { BackHandler } from 'react-native';
 
+import { useNavigationContext } from './context';
+
 export const navigationRef = createNavigationContainerRef();
 
-// You can export navigation functions to use throughout your app, without accessing the `navigation` prop.
 export function useCustomNavigation() {
-  const [currentPage, setCurrentPage] = useState('Scanner');
+  const { setCurrentPage } = useNavigationContext();
 
   function navigate(name, params) {
     if (name === 'Scanner') {
@@ -21,35 +22,40 @@ export function useCustomNavigation() {
     setCurrentPage(name);
   }
 
-  return { navigate, currentPage };
+  return { navigate };
 }
 
-export function goBackFunction() {
-  const history = navigationRef.getState().routes;
-  const pageBefore = history[history.length - 2];
+export function useGoBackFunction() {
+  const { setCurrentPage } = useNavigationContext();
 
-  if (pageBefore?.name === 'Scanner') {
-    navigationRef.reset({
-      index: 0,
-      routes: [...history.slice(0, -2), { name: 'Scanner' }],
-    });
-  } else {
-    navigationRef.goBack();
+  function goBack() {
+    const history = navigationRef.getState().routes;
+    const pageBefore = history[history.length - 2];
+
+    setCurrentPage(pageBefore.name);
+
+    if (pageBefore?.name === 'Scanner') {
+      navigationRef.reset({
+        index: 0,
+        routes: [...history.slice(0, -2), { name: 'Scanner' }],
+      });
+    } else {
+      navigationRef.goBack();
+    }
   }
+  return { goBack };
 }
 
 export function useCustomBackNavigation() {
+  const { setCurrentPage } = useNavigationContext();
+
   useEffect(() => {
-    console.log('a');
-    const unsubscribe = navigationRef.current.addListener('beforeRemove', e => {
-      e.preventDefault();
-      console.log(navigationRef);
-      unsubscribe();
-    });
     const backAction = () => {
       const history = navigationRef.getState().routes;
       const pageBefore = history[history.length - 2];
-      console.log(navigationRef);
+
+      setCurrentPage(pageBefore.name);
+
       if (pageBefore?.name === 'Scanner') {
         navigationRef.reset({
           index: 0,
@@ -68,3 +74,5 @@ export function useCustomBackNavigation() {
     return () => backHandler.remove();
   }, [navigationRef]);
 }
+
+export { useNavigationContext };

@@ -6,14 +6,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from './navigation';
 import { Main } from './navigation/Main';
 import TabBar from './components/TabBar';
+import { NavigationContextProvider } from './navigation/context';
 
 export default function App() {
   return (
     <>
       <StatusBar style="auto" />
       <NavigationContainer ref={navigationRef}>
-        <Main />
-        <TabBar />
+        <NavigationContextProvider>
+          <Main />
+          <TabBar />
+        </NavigationContextProvider>
       </NavigationContainer>
     </>
   );
