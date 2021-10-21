@@ -7,7 +7,7 @@ import { useNavigationContext } from './context';
 export const navigationRef = createNavigationContainerRef();
 
 export function useCustomNavigation() {
-  const { setCurrentPage } = useNavigationContext();
+  const { currentPage, setCurrentPage } = useNavigationContext();
 
   function navigate(name, params) {
     if (name === 'Scanner') {
@@ -22,7 +22,7 @@ export function useCustomNavigation() {
     setCurrentPage(name);
   }
 
-  return { navigate };
+  return { currentPage, navigate };
 }
 
 export function useGoBackFunction() {

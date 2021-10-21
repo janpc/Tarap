@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 
-import colors from '../constants/colors';
+import { useCustomBackNavigation } from '../../navigation';
+import colors from '../../constants/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
 });
 
 const Product = ({ route }) => {
+  useCustomBackNavigation();
   const { type, code } = route.params;
   return (
     <SafeAreaView style={styles.container}>

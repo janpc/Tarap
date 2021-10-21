@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import { useCustomNavigation, useNavigationContext } from '../../navigation';
+import { useCustomNavigation } from '../../navigation';
 
 import { TabBarContainer, Tab, SvgContainer } from './styles';
 import {
@@ -13,10 +13,7 @@ import {
 } from '../../icons';
 
 export default function TabBar() {
-  const { navigate } = useCustomNavigation();
-  const { currentPage } = useNavigationContext();
-
-  console.log(currentPage);
+  const { currentPage, navigate } = useCustomNavigation();
 
   const Tab = ({ name, screenName, Icon }) =>
     TabBarCell({ name, screenName, Icon, currentPage, navigate });
