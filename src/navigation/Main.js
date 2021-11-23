@@ -8,6 +8,7 @@ import Scanner from '../screens/Scanner';
 import Product from '../screens/Product';
 import Signin from '../screens/Signin';
 import { useGoBackFunction } from './';
+import Login from '../screens/Login';
 
 const { Navigator, Screen, Group } = createStackNavigator();
 
@@ -20,7 +21,7 @@ export const Main = () => {
           headerShown: false,
         }}
       >
-        <Screen name="Information" component={Signin} />
+        <Screen name="Information" component={Login} />
         <Screen name="Scanner" component={Scanner} />
 
         <Screen name="Search" component={TextDemo} />
