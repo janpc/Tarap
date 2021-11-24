@@ -2,23 +2,37 @@ import React, { useState } from 'react';
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
+
 import useMyFonts from './fonts';
 
 import { navigationRef } from './navigation';
 import { Main } from './navigation/Main';
+import { LoginNavigation } from './navigation/LoginNavigation';
 import TabBar from './components/TabBar';
 import { NavigationContextProvider } from './navigation/context';
 
 export default function App() {
   const [areFontsReady, error] = useMyFonts();
+  const [isLogged, setIsLogged] = useState(false);
+
+  function loggin() {
+    setIsLogged(true);
+    console.log('logged');
+  }
 
   return areFontsReady ? (
     <>
       <StatusBar style="auto" />
       <NavigationContainer ref={navigationRef}>
         <NavigationContextProvider>
-          <Main />
-          {/* <TabBar /> */}
+          {isLogged ? (
+            <>
+              <Main />
+              <TabBar />
+            </>
+          ) : (
+            <LoginNavigation loggin={loggin} />
+          )}
         </NavigationContextProvider>
       </NavigationContainer>
     </>

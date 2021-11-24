@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import {
   TarapTitle,
@@ -9,12 +9,17 @@ import {
   MainButtonText,
   TitleContainerText,
   LoginContainer,
+  TopButton,
+  TopButtonText,
 } from '../../styles/formStyles';
 
-const Signin = () => {
+const Login = ({ navigation }) => {
   return (
     <LoginContainer>
       <TitleContainerText>
+        <TopButton onPress={() => navigation.goBack()}>
+          <TopButtonText>Inicio</TopButtonText>
+        </TopButton>
         <TarapTitle>tarap</TarapTitle>
         <TarapSubtitle>
           {`¡ Compra consciente, cuida el medioambiente !`}
@@ -43,4 +48,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Login;

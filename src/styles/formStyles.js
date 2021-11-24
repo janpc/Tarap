@@ -1,4 +1,3 @@
-import { color } from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import colors from './colors';
 
@@ -94,4 +93,32 @@ export const LinkText = styled.Text`
   padding: 5px;
 
   text-decoration: underline;
+`;
+
+export const TopButton = styled.TouchableOpacity`
+  margin-top: -20px;
+  margin-left: 20px;
+  height: 30px;
+
+  background: ${({ dark }) => (dark ? colors.secondary : colors.main)};
+  border-radius: 15px;
+
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  flex-direction: row;
+
+  padding: 0 20px;
+`;
+
+export const TopButtonText = styled.Text`
+  font-family: Neutra Text TF;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 19px;
+
+  color: #ffffff;
+
+  ${({ gap }) => gap && 'margin-left:10px;'}
 `;

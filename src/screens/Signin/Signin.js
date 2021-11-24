@@ -13,12 +13,17 @@ import {
   LoginContainer,
   Link,
   LinkText,
+  TopButton,
+  TopButtonText,
 } from '../../styles/formStyles';
 
-const Signin = () => {
+const Signin = ({ navigation }) => {
   return (
     <LoginContainer>
       <TitleContainerText>
+        <TopButton onPress={() => navigation.goBack()}>
+          <TopButtonText>Inicio</TopButtonText>
+        </TopButton>
         <TarapTitle>tarap</TarapTitle>
         <TarapSubtitle>
           {`¡ Compra consciente, cuida el medioambiente !`}
