@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
+
+import { signinWithEmail, signinWithGoogle } from '../../firebase/auth';
 
 import { GoogleIcon, AppleIcon } from '../../icons/';
 
@@ -11,13 +13,19 @@ import {
   MainButtonText,
   TitleContainerText,
   LoginContainer,
-  Link,
-  LinkText,
   TopButton,
   TopButtonText,
+  Link,
+  LinkText,
 } from '../../styles/formStyles';
 
 const Signin = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleEmailSignin() {
+    const user = await signinWithEmail(email, password);
+  }
   return (
     <LoginContainer>
       <TitleContainerText>
@@ -32,30 +40,30 @@ const Signin = ({ navigation }) => {
       <View>
         <LoginInput
           placeholder="Email"
-          onChangeText={text => console.log(text)}
-          /* defaultValue={} */
+          onChangeText={text => setEmail(text)}
+          defaultValue={email}
         />
         <LoginInput
           placeholder="Contaseña"
-          onChangeText={text => console.log(text)}
-          /* defaultValue={} */
+          onChangeText={text => setPassword(text)}
+          defaultValue={password}
           secureTextEntry={true}
         />
         <Link>
           <LinkText>Recuperar contraseña</LinkText>
         </Link>
-        <MainButton>
-          <MainButtonText>Regístrate con correo</MainButtonText>
+        <MainButton onPress={handleEmailSignin}>
+          <MainButtonText>Iniciar sesión</MainButtonText>
         </MainButton>
       </View>
       <View>
-        <MainButton dark>
+        <MainButton onPress={signinWithGoogle} dark>
           <GoogleIcon />
-          <MainButtonText gap>Resgístrate con Google</MainButtonText>
+          <MainButtonText gap>Entrar con Google</MainButtonText>
         </MainButton>
         <MainButton dark>
           <AppleIcon />
-          <MainButtonText gap>Resgístrate con Apple</MainButtonText>
+          <MainButtonText gap>Entrar con Apple</MainButtonText>
         </MainButton>
       </View>
     </LoginContainer>

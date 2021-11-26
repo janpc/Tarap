@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
+
+import { loginWithEmail } from '../../firebase/auth';
+
+import { GoogleIcon, AppleIcon } from '../../icons/';
 
 import {
   TarapTitle,
@@ -14,6 +18,13 @@ import {
 } from '../../styles/formStyles';
 
 const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleEmailLogin() {
+    const user = await loginWithEmail(email, password);
+    console.log(user);
+  }
   return (
     <LoginContainer>
       <TitleContainerText>
@@ -28,22 +39,29 @@ const Login = ({ navigation }) => {
       <View>
         <LoginInput
           placeholder="Email"
-          onChangeText={text => console.log(text)}
-          /* defaultValue={} */
+          onChangeText={text => setEmail(text)}
+          defaultValue={email}
         />
         <LoginInput
           placeholder="Contaseña"
-          onChangeText={text => console.log(text)}
-          /* defaultValue={} */
+          onChangeText={text => setPassword(text)}
+          defaultValue={password}
           secureTextEntry={true}
         />
-      </View>
-      <View>
-        <MainButton>
-          <MainButtonText>Iniciar sesión</MainButtonText>
+        <MainButton onPress={handleEmailLogin}>
+          <MainButtonText>Regístrate con correo</MainButtonText>
         </MainButton>
       </View>
-      <View></View>
+      <View>
+        <MainButton dark>
+          <GoogleIcon />
+          <MainButtonText gap>Resgístrate con Google</MainButtonText>
+        </MainButton>
+        <MainButton dark>
+          <AppleIcon />
+          <MainButtonText gap>Resgístrate con Apple</MainButtonText>
+        </MainButton>
+      </View>
     </LoginContainer>
   );
 };

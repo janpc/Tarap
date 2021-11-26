@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import useMyFonts from './fonts';
 
 import { navigationRef } from './navigation';
+import useAuthState from './firebase/useAuthState';
 import { Main } from './navigation/Main';
 import { LoginNavigation } from './navigation/LoginNavigation';
 import TabBar from './components/TabBar';
@@ -13,12 +14,8 @@ import { NavigationContextProvider } from './navigation/context';
 
 export default function App() {
   const [areFontsReady, error] = useMyFonts();
-  const [isLogged, setIsLogged] = useState(false);
 
-  function loggin() {
-    setIsLogged(true);
-    console.log('logged');
-  }
+  const { isLogged, user } = useAuthState();
 
   return areFontsReady ? (
     <>
@@ -31,7 +28,7 @@ export default function App() {
               <TabBar />
             </>
           ) : (
-            <LoginNavigation loggin={loggin} />
+            <LoginNavigation />
           )}
         </NavigationContextProvider>
       </NavigationContainer>

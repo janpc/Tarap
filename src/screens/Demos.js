@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 
+import { signOutUser } from '../firebase/auth';
+
 import { useCustomBackNavigation } from '../navigation';
 import colors from '../constants/colors';
 import { Text } from '../components/Text';
@@ -63,11 +65,8 @@ export const ButtonDemo = () => {
       <Button onPress={() => Alert.alert('you pressed the default button')}>
         Default Button
       </Button>
-      <Button
-        type="outline"
-        onPress={() => Alert.alert('you pressed the outline button')}
-      >
-        Outline Button
+      <Button type="outline" onPress={signOutUser}>
+        Salir
       </Button>
     </View>
   );

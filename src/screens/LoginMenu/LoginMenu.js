@@ -20,10 +20,10 @@ const LoginMenu = ({ navigation }) => {
         </TarapSubtitle>
       </TitleContainerText>
       <View>
-        <MainButton onPress={() => navigation.navigate('Signin')}>
+        <MainButton onPress={() => navigation.navigate('Login')}>
           <MainButtonText>Nuevo usuario</MainButtonText>
         </MainButton>
-        <MainButton onPress={() => navigation.navigate('Login')} dark>
+        <MainButton onPress={() => navigation.navigate('Signin')} dark>
           <MainButtonText>Iniciar sesión</MainButtonText>
         </MainButton>
       </View>
