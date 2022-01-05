@@ -3,7 +3,10 @@ import { View, Text, Button } from 'react-native';
 import { Camera } from 'expo-camera';
 
 import { useCustomNavigation, useCustomBackNavigation } from '../../navigation';
+import { getProductByEan } from '../../firebase/database';
+
 import useCustomRatio from '../../hooks/useCustomRatio';
+
 import { HistoryIcon, FlashlightIcon } from '../../icons';
 import {
   InformationView,
@@ -33,9 +36,10 @@ const Scanner = ({ navigation }) => {
     getCameraStatus();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
-    navigate('Product', { type, code: data });
+    const result = await getProductByEan(data);
+    navigate('Product', result.data);
   };
 
   if (hasCameraPermission === null) {

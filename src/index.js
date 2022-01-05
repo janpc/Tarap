@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import useMyFonts from './fonts';
 
+import * as all from './util/timerWarningSolution';
+
 import { navigationRef } from './navigation';
 import useAuthState from './firebase/useAuthState';
 import { Main } from './navigation/Main';
