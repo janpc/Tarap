@@ -4,4 +4,6 @@ export default {
   background: '#E5E5E5',
   dark: '#000000',
   inputBackground: '#c4c4c4',
+
+  softGreyText: '#6b6b6b',
 };

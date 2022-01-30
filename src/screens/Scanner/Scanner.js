@@ -34,6 +34,8 @@ const Scanner = ({ navigation }) => {
       setHasCameraPermission(status === 'granted');
     }
     getCameraStatus();
+
+    handleBarCodeScanned({data: '6941399002722'});
   }, []);
 
   const handleBarCodeScanned = async ({ type, data }) => {

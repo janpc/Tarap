@@ -173,6 +173,68 @@ const AppleIcon = () => (
   </Svg>
 );
 
+const VerifiedBrandIcon = () => (
+  <Svg
+    width="15"
+    height="15"
+    viewBox="0 0 15 15"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ marginLeft: 10 }}
+  >
+    <Path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M7.252 0.0660066C7.32753 0.0228614 7.41301 0.000167847 7.5 0.000167847C7.58699 0.000167847 7.67247 0.0228614 7.748 0.0660066L14.748 4.06601C14.8245 4.10972 14.8881 4.17288 14.9324 4.2491C14.9766 4.32532 15 4.41187 15 4.50001V5.22001C15 9.75201 11.995 13.736 7.637 14.98C7.54745 15.0055 7.45255 15.0055 7.363 14.98C5.24198 14.374 3.37607 13.0936 2.04757 11.3327C0.719076 9.57167 0.000300345 7.4259 0 5.22001L0 4.50001C2.8427e-05 4.41187 0.0233513 4.32532 0.0676055 4.2491C0.11186 4.17288 0.175473 4.10972 0.252 4.06601L7.252 0.0660066ZM7.072 10.711L11.39 5.31201L10.61 4.68801L6.928 9.28901L4.32 7.11601L3.68 7.88401L7.072 10.711Z"
+      fill="#394D55"
+    />
+  </Svg>
+);
+
+const FavoriteIcon = () => (
+  <Svg
+    width="20"
+    height="19"
+    viewBox="0 0 20 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z"
+      fill="#BDBDBD"
+    />
+  </Svg>
+);
+const SimpleArrow = () => (
+  <Svg
+    width="12"
+    height="21"
+    viewBox="0 0 12 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M0.285767 17.8572L7.42862 10.7143L0.285767 3.57144L1.71434 0.714294L11.7143 10.7143L1.71434 20.7143L0.285767 17.8572Z"
+      fill="#F2C94C"
+    />
+  </Svg>
+);
+
+const SimpleArrowDown = () => (
+  <Svg
+    width="20"
+    height="12"
+    viewBox="0 0 20 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M2.85714 0L10 7.14286L17.1429 0L20 1.42857L10 11.4286L0 1.42857L2.85714 0Z"
+      fill="#F2C94C"
+    />
+  </Svg>
+);
+
 export {
   ScanIcon,
   InformateIcon,
@@ -184,4 +246,8 @@ export {
   FlashlightIcon,
   GoogleIcon,
   AppleIcon,
+  VerifiedBrandIcon,
+  FavoriteIcon,
+  SimpleArrow,
+  SimpleArrowDown,
 };

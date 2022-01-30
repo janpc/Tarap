@@ -9,7 +9,7 @@ export const TabBarContainer = styled.View`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: #f2f2f2;
 `;
 export const SvgContainer = styled.View`
   height: 40px;
